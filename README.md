@@ -29,5 +29,5 @@ Dividimos seu desafio em três níveis:
 ## Guideline:
 - [Duplique](https://help.github.com/articles/duplicating-a-repository/) este repositório (**não** fork)
 - Siga as boas práticas do git (exemplo: ao concluir um dos níveis faça um commit bem descrito)
-- Utilize ASP.NET MVC 5+/WebAPI (C#), para desenvolver a aplicação
+- Utilize .Net (MVC 5, Web API ou ASP.NET Core), para desenvolver a aplicação
 - Fique a vontade para definir a stack front-end (KnockoutJS, Angular, Aurelia, React, JQuery, Stylus, PostCSS, SASS, Gulp, Grunt, etc...)
