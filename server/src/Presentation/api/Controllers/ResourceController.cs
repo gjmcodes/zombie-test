@@ -45,7 +45,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> Put(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _resourceAppService.DeleteResourceAsync(id);
 

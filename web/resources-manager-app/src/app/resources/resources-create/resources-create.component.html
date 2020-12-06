@@ -1,15 +1,25 @@
-<ngb-panel title="Simple">
-    <ng-template ngbPanelContent>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-        officia
-        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-        tempor,
-        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-        helvetica,
-        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-        Leggings
-        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-        accusamus
-        labore sustainable VHS.
-    </ng-template>
-</ngb-panel>
+<form (ngSubmit)="onSubmit()">
+
+    <!-- Nome-->
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+    </div>
+
+    <!-- Quantidade -->
+    <div class="form-group">
+        <label for="amount">Quantidade</label>
+        <input type="number" class="form-control" id="amount" required [(ngModel)]="model.amount" name="amount"
+            #name="ngModel">
+    </div>
+
+
+    <!-- Observações -->
+    <div class="form-group">
+        <label for="observations">Observações</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.observations" name="observations"
+            #name="ngModel">
+    </div>
+
+    <button type="submit" class="btn btn-success">Enviar</button>
+</form>

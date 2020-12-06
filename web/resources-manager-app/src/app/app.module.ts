@@ -9,6 +9,7 @@ import { ResourcesEditComponent } from './resources/resources-edit/resources-edi
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResourcesModule } from './resources/resources.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ApiService } from 'src/core/data/api.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ResourcesModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService, NgbModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

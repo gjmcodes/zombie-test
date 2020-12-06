@@ -16,54 +16,61 @@ export class ApiService {
   }
 
   async get(endpoint: string, params?: any, reqOpts?: any): Promise<OperationResult> {
-    if (!reqOpts) {
-      reqOpts = {
-        params: new HttpParams()
-      };
-    }
 
-    // Support easy query params for GET requests
-    if (params) {
-      reqOpts.params = new HttpParams();
-      for (let k in params) {
-        reqOpts.params = reqOpts.params.set(k, params[k]);
-      }
-    }
-    let data = await this.http.get(environment.API_URL + endpoint, {
-    }).toPromise();
+    let result = await this.http.get(environment.API_URL + endpoint, {
+    }).toPromise()
+      .then(res => { return this.toOkRequestResult(res) })
+      .catch(err => { return this.catchPromiseError(err) });
 
-    return this.toOperationResult(data);
+    return result;
   }
 
   async post(endpoint: string, body: any, reqOpts?: any): Promise<OperationResult> {
-    let data = await this.http.post<OperationResult>(environment.API_URL + endpoint, body, reqOpts)
-      .toPromise();
+    let result = await this.http.post<OperationResult>(environment.API_URL + endpoint, body, reqOpts)
+      .toPromise()
+      .then(res => { return this.toOkRequestResult(res) })
+      .catch(err => { return this.catchPromiseError(err) });
 
-    return await this.toOperationResult(data);
+    return result;
   }
 
   async put(endpoint: string, body: any, reqOpts?: any): Promise<OperationResult> {
-    let data = await this.http.put<HttpResponse<OperationResult>>(environment.API_URL + endpoint, body, reqOpts)
-      .toPromise();
-    return this.toOperationResult(data);
+    let result = await this.http.put<HttpResponse<OperationResult>>(environment.API_URL + endpoint, body, reqOpts)
+      .toPromise()
+      .then(res => { return this.toOkRequestResult(res) })
+      .catch(err => { return this.catchPromiseError(err) });
+
+    return result;
   }
 
   async delete(endpoint: string, reqOpts?: any): Promise<OperationResult> {
-    let data = await this.http.delete<HttpResponse<OperationResult>>(environment.API_URL + endpoint, reqOpts)
-      .toPromise();
+    let result = await this.http.delete<HttpResponse<OperationResult>>(environment.API_URL + endpoint)
+      .toPromise()
+      .then(res => { return this.toOkRequestResult(res) })
+      .catch(err => { return this.catchPromiseError(err) });
 
-    return this.toOperationResult(data);
+    return result;
   }
 
   async patch(endpoint: string, body: any, reqOpts?: any): Promise<OperationResult> {
-    let data = this.http.patch(environment.API_URL + endpoint, body, reqOpts);
-    return this.toOperationResult(data);
+    let result = this.http.patch(environment.API_URL + endpoint, body, reqOpts)
+      .toPromise()
+      .then(res => { return this.toOkRequestResult(res) })
+      .catch(err => { return this.catchPromiseError(err) });
+
+    return result;
   }
 
-  toOperationResult(data: any): OperationResult {
+  catchPromiseError(promise: any) {
+    if (promise.status == 400) return this.toBadRequestResult(promise);
+  }
 
-    let json = JSON.parse(JSON.stringify(data));
+  toOkRequestResult(promise: any): OperationResult {
+    return new OperationResult(null, false, promise);
+  }
 
-    return new OperationResult(json.success, json.message, json.extraMessages, json.data);
+  toBadRequestResult(promise: any): OperationResult {
+
+    return new OperationResult(promise.validationResult, promise.hasErrors, promise.data);
   }
 }

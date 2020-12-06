@@ -1,16 +1,16 @@
+import { ValidationResult } from './validation-result';
+
 export class OperationResult {
-    success: boolean;
-    message: string;
-    extraMessages: string[];
+    validationResult: ValidationResult;
+    hasErrors: boolean;
     data: any;
 
-    constructor(success: boolean,
-        message: string,
-        extraMessages: string[],
+    constructor(validationResult: ValidationResult,
+        hasErrors: boolean,
         data: any) {
-        this.success = success;
-        this.message = message;
-        this.extraMessages = extraMessages;
+        this.validationResult = validationResult;
+        this.hasErrors = hasErrors;
         this.data = data;
     }
+
 }

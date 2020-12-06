@@ -4,6 +4,7 @@ import { ResourcesIndexComponent } from './resources-index/resources-index.compo
 import { ResourcesCreateComponent } from './resources-create/resources-create.component';
 import { ResourcesEditComponent } from './resources-edit/resources-edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   exports: [
     ResourcesIndexComponent,

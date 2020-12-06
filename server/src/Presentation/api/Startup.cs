@@ -19,6 +19,8 @@ namespace api
 {
     public class Startup
     {
+        const string CORS = "ZombieCors";
+
         public Startup(IHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -43,6 +45,16 @@ namespace api
             });
             services.RegisterServices();
             services.AddMediatR(typeof(Startup));
+            services.AddCors(options =>
+                  {
+                      options.AddPolicy(name: CORS,
+                                        builder =>
+                                        {
+                                            builder.AllowAnyHeader();
+                                            builder.AllowAnyMethod();
+                                            builder.AllowAnyOrigin();
+                                        });
+                  });
 
         }
 
@@ -53,6 +65,8 @@ namespace api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(CORS);
 
             app.UseHttpsRedirection();
 

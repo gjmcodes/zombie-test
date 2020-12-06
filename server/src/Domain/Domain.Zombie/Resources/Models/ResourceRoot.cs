@@ -49,8 +49,11 @@ namespace Domain.Zombie.Resources.Models
         protected void CanUseName(IResourceReadOnlyRepository resourceReadOnly)
         {
             this.RuleFor(p => p.Name)
+            .NotNull().WithMessage("O nome do recurso não pode ser vazio")
             .MustAsync(async (name, cancellationToken) =>
             {
+                if (string.IsNullOrEmpty(name)) return true;
+
                 var sameNamesCount = await resourceReadOnly.CountByNameAsync(name);
                 return sameNamesCount == 0;
             }).WithMessage("Um recurso de mesmo nome já existe");

@@ -1,1 +1,21 @@
-<p>resources-index works!</p>
+<button class="btn btn-primary" (click)="newResource()">Novo</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Nome</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Observações</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let resource of resources; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ resource.name }}</td>
+            <td>{{ resource.amount | number }}</td>
+            <td>{{ resource.observations }}</td>
+            <td (click)="deleteAsync(resource)"></td>
+        </tr>
+    </tbody>
+</table>
