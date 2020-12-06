@@ -15,10 +15,15 @@ export class ResourceDataService {
   constructor(private api: ApiService) { }
 
   async getResourcesAsync(): Promise<Resource[]> {
-    debugger
     var request = await this.api.get(endpoint);
 
     if (request.hasErrors) return null;
+
+    return request.data;
+  }
+
+  async getResourceAsync(id: any): Promise<Resource> {
+    var request = await this.api.get(endpoint + id);
 
     return request.data;
   }
@@ -31,7 +36,13 @@ export class ResourceDataService {
 
   async deleteResourcesAsync(resourceId: any): Promise<OperationResult> {
     var request = await this.api.delete(endpoint + resourceId);
-    
+
+    return request;
+  }
+
+  async putResourcesAsync(resource: Resource): Promise<OperationResult> {
+    var request = await this.api.put(endpoint, resource);
+
     return request;
   }
 }

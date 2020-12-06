@@ -21,14 +21,7 @@ export class ResourcesCreateComponent implements OnInit {
 
   async onSubmit() {
     let result = await this.resourceDataService.postResourcesAsync(this.model);
-    if (result.hasErrors) {
-      result.validationResult.errors.forEach(error => {
-        if (error.propertyName.toLocaleLowerCase() == "name") {
-          this.form.controls.name.setErrors(null);
-        }
-      });
-    } else {
-      this.router.navigate(['/resources'])
-    }
+    if (!result.hasErrors)
+      this.router.navigate(['/resources']);
   }
 }

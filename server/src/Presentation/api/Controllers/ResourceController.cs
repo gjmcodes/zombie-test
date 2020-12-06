@@ -27,6 +27,16 @@ namespace api.Controllers
             return ApiResponse(queries);
         }
 
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var query = await _resourceAppService.GetAsync(id);
+
+            return ApiResponse(query);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AddResourceDTO resource)
         {

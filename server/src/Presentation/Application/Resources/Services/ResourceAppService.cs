@@ -58,6 +58,14 @@ namespace Application.Resources.Services
             return queries;
         }
 
+        public async Task<ResourceIndexingQuery> GetAsync(Guid id)
+        {
+            var resource = await _resourceReadOnlyRepository.GetAsync(id);
+
+            var query = ToQueryBuilder.MapAddResourceCommand(resource);
+
+            return query;
+        }
 
 
         public void Dispose()

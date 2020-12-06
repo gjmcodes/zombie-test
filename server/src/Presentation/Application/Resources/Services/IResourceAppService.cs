@@ -13,5 +13,7 @@ namespace Application.Resources.Services
          Task<CommandResult> UpdateResourceAsync(UpdateResourceDTO dto);
          Task<CommandResult> DeleteResourceAsync(Guid id);
          Task<IEnumerable<ResourceIndexingQuery>> GetAllAsync();
+         Task<ResourceIndexingQuery> GetAsync(Guid id);
+
     }
 }

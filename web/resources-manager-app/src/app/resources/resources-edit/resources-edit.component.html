@@ -1,1 +1,28 @@
-<p>resources-edit works!</p>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+
+    <input type="hidden" id="id" required [(ngModel)]="model.id" name="id" #name="ngModel" />
+
+    <!-- Nome-->
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+    </div>
+
+    <!-- Quantidade -->
+    <div class="form-group">
+        <label for="amount">Quantidade</label>
+        <input type="number" class="form-control" id="amount" required [(ngModel)]="model.amount" name="amount"
+            #name="ngModel">
+    </div>
+
+
+    <!-- Observações -->
+    <div class="form-group">
+        <label for="observations">Observações</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.observations" name="observations"
+            #name="ngModel">
+    </div>
+
+    <button type="submit" class="btn btn-success">Enviar</button>
+
+</form>

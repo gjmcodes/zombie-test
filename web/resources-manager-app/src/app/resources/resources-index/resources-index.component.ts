@@ -26,8 +26,8 @@ export class ResourcesIndexComponent implements OnInit {
     this.router.navigate(['/resources/create']);
   }
 
-  editResource() {
-    this.router.navigate(['/resources/edit']);
+  editResource(id : any) {
+    this.router.navigate(['/resources/edit/' + id]);
   }
 
   async deleteAsync(resource: Resource) {

@@ -15,7 +15,10 @@
             <td>{{ resource.name }}</td>
             <td>{{ resource.amount | number }}</td>
             <td>{{ resource.observations }}</td>
-            <td (click)="deleteAsync(resource)"></td>
+            <td>
+                <button class="btn btn-warning" (click)="editResource(resource.id)">Editar</button>
+                <button class="btn btn-danger" (click)="deleteAsync(resource)">Remover</button>
+            </td>
         </tr>
     </tbody>
 </table>

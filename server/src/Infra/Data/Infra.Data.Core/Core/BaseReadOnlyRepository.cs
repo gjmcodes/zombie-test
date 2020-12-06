@@ -33,5 +33,11 @@ namespace Infra.Data.Core.Core
         {
             return await _dbSet.ToArrayAsync();
         }
+
+        public async Task<T> GetAsync(Guid id)
+        {
+            var obj = await _dbSet.FindAsync(id);
+            return obj;
+        }
     }
 }
