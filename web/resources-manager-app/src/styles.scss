@@ -1,2 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap";
+
+.action-btn-padding{
+    width: 120px;
+    height: 35px;
+    margin:2px;
+}
+
+.action-btn-padding > span{
+    padding-left: 5px;
+}
